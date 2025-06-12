@@ -1,0 +1,75 @@
+<form [formGroup]="form" (ngSubmit)="handleSubmit()" class="m-2 grid gap-2">
+  <div class="grid gap-2">
+    <label for="name">Nombre: </label>
+    <input
+      type="text"
+      placeholder="Ingrese su nombre"
+      id="name"
+      formControlName="name"
+      class="border border-gray-500 rounded-xl p-2 placeholder:text-gray-400 max-w-[15rem]"
+    />
+    @if (form.get('name')?.invalid && form.get('name')?.touched) { 
+      @if (form.get('name')?.hasError('required')) {
+        <span class="text-red-600 font-bold">El nombre es obligatorio.</span>
+      } 
+      @if (form.get('name')?.hasError('minlength')) {
+        <span class="text-red-600 font-bold">El nombre no puede tener menos de 2 caracteres.</span>
+    } @if (form.get('name')?.hasError('maxlength')) {
+    <span class="text-red-600 font-bold"
+      >El nombre no puede superar 30 caracteres.</span
+    >
+    } }
+  </div>
+  <div class="grid gap-2">
+    <label for="surname">Apellidos: </label>
+    <input
+      type="text"
+      placeholder="Ingrese sus apellidos"
+      id="surname"
+      formControlName="surname"
+      class="border border-gray-500 rounded-xl p-2 placeholder:text-gray-400 max-w-[20rem]"      
+    />
+    @if (form.get('surname')?.invalid && form.get('surname')?.touched) { @if
+    (form.get('surname')?.hasError('required')) {
+    <span class="text-red-600 font-bold">El apellido es obligatorio.</span>
+    } @if (form.get('surname')?.hasError('minlength')) {
+    <span class="text-red-600 font-bold"
+      >El nombre no puede tener menos de 2 caracteres.</span
+    >
+    } @if (form.get('surname')?.hasError('maxlength')) {
+    <span class="text-red-600 font-bold"
+      >El nombre no puede superar 30 caracteres.</span
+    >
+    } }
+  </div>
+  <div class="grid gap-2">
+    <label for="name">Email: </label>
+    <input
+      type="email"
+      placeholder="Ingrese su correo"
+      id="email"
+      formControlName="email"
+      class="border border-gray-500 rounded-xl p-2 placeholder:text-gray-400 max-w-[20rem]"
+    />
+    @if (form.get('email')?.invalid && form.get('email')?.touched) { @if
+    (form.get('email')?.hasError('required')) {
+    <span class="text-red-600 font-bold">El correo es obligatorio.</span>
+    } @if (form.get('email')?.hasError('pattern')) {
+    <span class="text-red-600 font-bold"
+      >El correo no tiene el formato correcto.</span
+    >
+    } }
+  </div>
+  <div class="flex gap-4 mt-6">
+    <app-button (clickEmitter)="handleClear()" [isDisabled]="!hasAnyValue" customClass="bg-red-500">
+      Cancelar
+    </app-button>
+    <button
+      type="submit"
+      class="py-2 px-4 bg-green-500 rounded-2xl border-none text-white cursor-pointer disabled:bg-gray-500 disabled:cursor-auto"
+      [disabled]="form.invalid"
+    >
+      Agregar
+    </button>
+  </div>
+</form>

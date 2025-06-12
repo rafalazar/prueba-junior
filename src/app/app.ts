@@ -1,12 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { AppService } from './app.service';
+import { DatatableComponent } from './components/datatable/datatable.component';
+import { FormComponent } from "./components/form/form.component";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, DatatableComponent, FormComponent],
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  styleUrl: './app.css',
 })
 export class App {
-  protected title = 'prueba';
+  public appService = inject(AppService);
 }
