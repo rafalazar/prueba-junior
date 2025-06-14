@@ -2,7 +2,6 @@ import { Directive, ElementRef, OnInit, Renderer2, inject, input } from '@angula
 
 @Directive({
   selector: '[formInputStyle]',
-  standalone: true,
 })
 export class FormInputStyleDirective implements OnInit {
   private _elementRef = inject(ElementRef);
