@@ -36,7 +36,6 @@ export class ErrorMessagesInputDirective implements OnInit {
     }
 
     this._handleErrors();
-    
   }
 
   private _handleErrors(): void {

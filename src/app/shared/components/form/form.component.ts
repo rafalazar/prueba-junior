@@ -3,12 +3,18 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { ButtonComponent } from '../button/button.component';
 import { AppService } from '../../../app.service';
 import { User } from '../../../interfaces/user.interface';
-import { ErrorMessagesInputDirective } from '../../directives/error-messages-input.directive';
+import { ErrorMessagesInputDirective } from '../../directives/form/error-messages-input.directive';
+import { FormInputStyleDirective } from '../../directives/form/form-input-style.directive';
 
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
-  imports: [ReactiveFormsModule, ErrorMessagesInputDirective, ButtonComponent]
+  imports: [
+    ReactiveFormsModule,
+    FormInputStyleDirective,
+    ErrorMessagesInputDirective,
+    ButtonComponent
+  ]
 })
 export class FormComponent {
   fb: FormBuilder = inject(FormBuilder);
