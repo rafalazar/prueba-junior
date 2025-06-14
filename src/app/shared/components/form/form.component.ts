@@ -1,13 +1,14 @@
-import { Component, inject } from "@angular/core";
-import { User } from "../../interfaces/user.interface";
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
-import { AppService } from "../../app.service";
-import { ButtonComponent } from "../button/button.component";
+import { Component, inject } from '@angular/core';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ButtonComponent } from '../button/button.component';
+import { AppService } from '../../../app.service';
+import { User } from '../../../interfaces/user.interface';
+import { ErrorMessagesInputDirective } from '../../directives/error-messages-input.directive';
 
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
-  imports: [ReactiveFormsModule, ButtonComponent]
+  imports: [ReactiveFormsModule, ErrorMessagesInputDirective, ButtonComponent]
 })
 export class FormComponent {
   fb: FormBuilder = inject(FormBuilder);
@@ -16,13 +17,11 @@ export class FormComponent {
   form: FormGroup = this.fb.group({
     name: [
       '',
-      {
-        validators: [
-          Validators.required,
-          Validators.minLength(2),
-          Validators.maxLength(30),
-        ],
-      },
+      [
+        Validators.required,
+        Validators.minLength(2),
+        Validators.maxLength(30),
+      ],
     ],
     surname: [
       '',
@@ -47,7 +46,6 @@ export class FormComponent {
   }
 
   handleSubmit() {
-    console.log(this.form.value);
     const { name, surname, email } = this.form.value;
     const newUser: User = {
       id: crypto.randomUUID(),
