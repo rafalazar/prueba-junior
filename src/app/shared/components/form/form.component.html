@@ -37,12 +37,12 @@
     <app-button (clickEmitter)="handleClear()" [isDisabled]="!hasAnyValue" customClass="bg-red-500">
       Cancelar
     </app-button>
-    <button
+    <app-button
       type="submit"
-      class="py-2 px-4 bg-green-500 rounded-2xl border-none text-white cursor-pointer disabled:bg-gray-500 disabled:cursor-auto"
-      [disabled]="form.invalid"
-    >
+      customClass="bg-green-500"
+      [isSubmit]="true"
+      [isDisabled]="form.invalid">
       Agregar
-    </button>
+    </app-button>
   </div>
 </form>
